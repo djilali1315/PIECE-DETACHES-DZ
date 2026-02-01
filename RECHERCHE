@@ -1,0 +1,24 @@
+    </tbody>
+  </table>
+
+  <script>
+    function filterTable() {
+      let input = document.getElementById("search");
+      let filter = input.value.toLowerCase();
+      let table = document.getElementById("pieces");
+      let trs = table.getElementsByTagName("tr");
+      for (let i = 1; i < trs.length; i++) {
+        let tds = trs[i].getElementsByTagName("td");
+        let show = false;
+        for (let j = 0; j < tds.length - 1; j++) { // آخر عمود هو WhatsApp
+          if (tds[j].textContent.toLowerCase().includes(filter)) {
+            show = true;
+            break;
+          }
+        }
+        trs[i].style.display = show ? "" : "none";
+      }
+    }
+  </script>
+</body>
+</html>

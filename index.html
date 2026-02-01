@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pièces DZ</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+    th { background-color: #ddd; }
+    #search { margin-bottom: 10px; width: 300px; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Recherche de pièces</h1>
+  <input type="text" id="search" placeholder="Tapez référence, nom ou modèle..." onkeyup="filterTable()">
+  
+  <table id="pieces">
+    <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Nom de la pièce</th>
+        <th>Marque</th>
+        <th>Modèle</th>
+        <th>Année</th>
+        <th>Véhicules compatibles</th>
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>7701205815</td>
+        <td>Disque frein</td>
+        <td>Renault</td>
+        <td>Logan</td>
+        <td>2018</td>
+        <td>Logan 2018 / Logan 2019 / Sandero 2018</td>
+        <td><a href="https://wa.me/123456789">WhatsApp</a></td>
+      </tr>
+      <tr>
+        <td>8200834592</td>
+        <td>Plaquette frein</td>
+        <td>Renault</td>
+        <td>Clio</td>
+        <td>2017</td>
+        <td>Clio 2017 / Clio 2018 / Symbol 2017</td>
+        <td><a href="https://wa.me/123456789">WhatsApp</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function filterTable() {
+      let input = document.getElementById("search");
+      let filter = input.value.toLowerCase();
+      let table = document.getElementById("pieces");
+      let trs = table.getElementsByTagName("tr");
+      for (let i = 1; i < trs.length; i++) {
+        let tds = trs[i].getElementsByTagName("td");
+        let show = false;
+        for (let j = 0; j < tds.length - 1; j++) { // آخر عمود هو WhatsApp
+          if (tds[j].textContent.toLowerCase().includes(filter)) {
+            show = true;
+            break;
+          }
+        }
+        trs[i].style.display = show ? "" : "none";
+      }
+    }
+  </script>
+</body>
+</html>
